@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  gvpb.identity.api:
+    image: ${DOCKER_REGISTRY-}gvpbidentityapi
+    build:
+      context: .
+      dockerfile: GVPB.Identity.Api/Dockerfile
+
+  gvpb.identity.web:
+    image: ${DOCKER_REGISTRY-}gvpbidentityweb
+    build:
+      context: .
+      dockerfile: GVPB.Identity.Web/Dockerfile
+
