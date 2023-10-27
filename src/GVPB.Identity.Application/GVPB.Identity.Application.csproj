@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GVPB.Identity.Domain\GVPB.Identity.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

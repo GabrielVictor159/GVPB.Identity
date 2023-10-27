@@ -8,7 +8,7 @@ public class UserValidator : AbstractValidator<User>
 {
     public UserValidator()
     {
-        
+
     }
 }
 

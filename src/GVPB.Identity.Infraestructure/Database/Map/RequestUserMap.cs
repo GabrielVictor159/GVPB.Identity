@@ -1,7 +1,7 @@
 ﻿
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
 using GVPB.Identity.Infraestructure.Database.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace GVPB.Identity.Infraestructure.Database.Map;
 

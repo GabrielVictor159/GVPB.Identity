@@ -34,13 +34,13 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
         return mapper.Map<Domain>(context.Set<Entity>().Find(id));
     }
 
-    public List<Domain> GetByFilter(Expression<Func<Domain,bool>> expression)
+    public List<Domain> GetByFilter(Expression<Func<Domain, bool>> expression)
     {
         var predicate = mapper.Map<Expression<Func<Entity, bool>>>(expression);
         return mapper.Map<List<Domain>>(context.Set<Entity>().Where(predicate).ToList());
     }
 
-    public int Update(Domain domain) 
+    public int Update(Domain domain)
     {
         var entity = mapper.Map<Entity>(domain);
         var existingEntity = context.Set<Entity>().Find(entity);
@@ -52,16 +52,57 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
         return 0;
     }
 
-    public int UpdateRange(List<Domain> domains)
+    public (int, List<Domain> EntitiesNotFound) UpdateRange(List<Domain> domains)
     {
         var entities = mapper.Map<List<Entity>>(domains);
-        var existingEntities = new List<Entity>();
-        foreach ( var entity in entities)
+        int result = 0;
+        List<Entity> entitiesNotFound = new List<Entity>();
+        foreach (var entity in entities)
         {
             var existingEntity = context.Set<Entity>().Find(entity);
-            if(existingEntity != null)
-            { }
+            if (existingEntity != null)
+            {
+                context.Entry(existingEntity).CurrentValues.SetValues(entity);
+                result += context.SaveChanges();
+            }
+            else
+            {
+                entitiesNotFound.Add(entity);
+            }
         }
+        return (result, mapper.Map<List<Domain>>(entitiesNotFound));
+    }
+
+    public int Delete(Domain domain)
+    {
+        var entity = context.Set<Entity>().Find(mapper.Map<Entity>(domain));
+        if (entity != null)
+        {
+            context.Set<Entity>().Remove(entity);
+            return context.SaveChanges();
+        }
+        return 0;
+    }
+
+    public (int, List<Domain> EntitiesNotFound) DeleteRange(List<Domain> domains)
+    {
+        var entities = mapper.Map<List<Entity>>(domains);
+        int result = 0;
+        List<Entity> entitiesNotFound = new List<Entity>();
+        foreach (var entity in entities)
+        {
+            var entitySearch = context.Set<Entity>().Find(entity);
+            if (entitySearch != null)
+            {
+                context.Set<Entity>().Remove(entity);
+                result += context.SaveChanges();
+            }
+            else
+            {
+                entitiesNotFound.Add(entity);
+            }
+        }
+        return (result, mapper.Map<List<Domain>>(entitiesNotFound));
     }
 }
 
