@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Database\Migrations\" />
-    <Folder Include="Modules\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

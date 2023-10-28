@@ -9,12 +9,10 @@ public class RequestUser : Entity<RequestUser, RequestUserValidator>
     public required string Body { get; init; }
     public required DateTime CreationDate { get; init; }
 
-    public RequestUser(Guid id, string body, DateTime creationDate)
+    public RequestUser()
         : base(new())
     {
-        Id = id;
-        Body = body;
-        CreationDate = creationDate;
+       
     }
 }
 

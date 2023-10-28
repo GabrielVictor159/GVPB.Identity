@@ -1,9 +1,15 @@
 ﻿
+using GVPB.Identity.Infraestructure.Database.Entities;
+using GVPB.Identity.Infraestructure.Database.Map;
+using ManagementServices.variables.Infrastructure.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 namespace GVPB.Identity.Infraestructure.Database;
 
 public class Context : DbContext
 {
+    public DbSet<User>  Users=> Set<User>();
+    public DbSet<RequestUser> RequestUsers => Set<RequestUser>();
+    public DbSet<EnvVariable> envVariables => Set<EnvVariable>();
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (Environment.GetEnvironmentVariable("DBCONN") != null)
@@ -18,6 +24,8 @@ public class Context : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.ApplyConfiguration(new UserMap());
+        modelBuilder.ApplyConfiguration(new RequestUserMap());
         base.OnModelCreating(modelBuilder);
     }
 }

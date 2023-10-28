@@ -48,7 +48,7 @@ public class InfrastructureModule : Module
     private void Mapper(ContainerBuilder builder)
     {
         builder.RegisterAssemblyTypes(typeof(InfrastructureException).Assembly)
-          .Where(t => (t.Namespace ?? string.Empty).Contains("Database") && typeof(Profile).IsAssignableFrom(t) && !t.IsAbstract && t.IsPublic)
+          .Where(t => (t.Namespace ?? string.Empty).Contains("Mapper") && typeof(Profile).IsAssignableFrom(t) && !t.IsAbstract && t.IsPublic)
           .As<Profile>();
         builder.Register(c => new MapperConfiguration(cfg =>
         {

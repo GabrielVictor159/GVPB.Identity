@@ -19,9 +19,9 @@ public class UserBuilder
         return new UserBuilder()
         {
             Id = Guid.NewGuid(),
-            UserName = faker.Random.String2(faker.Random.Int(5,8)),
-            Password = faker.Random.String2(faker.Random.Int(5, 8)),
-            Email = faker.Random.String2(faker.Random.Int(5, 8))
+            UserName = faker.Random.String2(faker.Random.Int(6,8)),
+            Password = faker.Random.String2(faker.Random.Int(6, 8)),
+            Email = faker.Internet.Email()
 
         };
     }

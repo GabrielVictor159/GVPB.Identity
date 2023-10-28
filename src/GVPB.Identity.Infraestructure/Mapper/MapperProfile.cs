@@ -8,7 +8,7 @@ namespace GVPB.Identity.Infraestructure.Mapper
     {
         public MapperProfile()
         {
-
+            MapDomains();
         }
         public void MapDomains()
         {

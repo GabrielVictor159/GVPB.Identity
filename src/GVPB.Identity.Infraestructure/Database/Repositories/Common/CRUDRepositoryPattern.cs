@@ -43,7 +43,7 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
     public int Update(Domain domain)
     {
         var entity = mapper.Map<Entity>(domain);
-        var existingEntity = context.Set<Entity>().Find(entity);
+        var existingEntity = context.Set<Entity>().Find(entity.GetType().GetProperty("Id")!.GetValue(entity));
         if (existingEntity != null)
         {
             context.Entry(existingEntity).CurrentValues.SetValues(entity);
@@ -52,14 +52,14 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
         return 0;
     }
 
-    public (int, List<Domain> EntitiesNotFound) UpdateRange(List<Domain> domains)
+    public (int numberLinesModify, List<Domain> EntitiesNotFound) UpdateRange(List<Domain> domains)
     {
         var entities = mapper.Map<List<Entity>>(domains);
         int result = 0;
         List<Entity> entitiesNotFound = new List<Entity>();
         foreach (var entity in entities)
         {
-            var existingEntity = context.Set<Entity>().Find(entity);
+            var existingEntity = context.Set<Entity>().Find(entity.GetType().GetProperty("Id")!.GetValue(entity));
             if (existingEntity != null)
             {
                 context.Entry(existingEntity).CurrentValues.SetValues(entity);
@@ -75,7 +75,7 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
 
     public int Delete(Domain domain)
     {
-        var entity = context.Set<Entity>().Find(mapper.Map<Entity>(domain));
+        var entity = context.Set<Entity>().Find(domain!.GetType().GetProperty("Id")!.GetValue(domain));
         if (entity != null)
         {
             context.Set<Entity>().Remove(entity);
@@ -84,17 +84,17 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
         return 0;
     }
 
-    public (int, List<Domain> EntitiesNotFound) DeleteRange(List<Domain> domains)
+    public (int numberLinesModify, List<Domain> EntitiesNotFound) DeleteRange(List<Domain> domains)
     {
         var entities = mapper.Map<List<Entity>>(domains);
         int result = 0;
         List<Entity> entitiesNotFound = new List<Entity>();
         foreach (var entity in entities)
         {
-            var entitySearch = context.Set<Entity>().Find(entity);
+            var entitySearch = context.Set<Entity>().Find(entity.GetType().GetProperty("Id")!.GetValue(entity));
             if (entitySearch != null)
             {
-                context.Set<Entity>().Remove(entity);
+                context.Set<Entity>().Remove(entitySearch);
                 result += context.SaveChanges();
             }
             else

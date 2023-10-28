@@ -10,6 +10,7 @@ public class User : Entity<User, UserValidator>
     public required Guid Id { get; init; }
     public required string UserName { get; init; }
     private string _password { get; set; } = "";
+    public int PasswordLength { get; private set; }
     public required string Password 
     { 
         get 
@@ -19,6 +20,7 @@ public class User : Entity<User, UserValidator>
         init 
         { 
             _password = value.md5Hash(); 
+            PasswordLength = value.Length;
         } 
     }
     public required string Email { get; init; }
