@@ -26,7 +26,7 @@ public class UserLoginHandler : Handler<LoginRequest>
         e.UserName==request.UserName 
         && e.Password == request.Password.md5Hash()).FirstOrDefault();
 
-        if(entity != null)
+        if(entity == null)
         {
             notificationService.AddNotification("User Invalid", "Unable to find any user with the provided data.");
             return;
