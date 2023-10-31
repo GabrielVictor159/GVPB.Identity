@@ -7,9 +7,10 @@ namespace GVPB.Identity.Infraestructure.Database;
 
 public class Context : DbContext
 {
-    public DbSet<User>  Users=> Set<User>();
+    public DbSet<User> Users => Set<User>();
     public DbSet<RequestUser> RequestUsers => Set<RequestUser>();
     public DbSet<EnvVariable> envVariables => Set<EnvVariable>();
+    public DbSet<Log> Logs => Set<Log>(); 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (Environment.GetEnvironmentVariable("DBCONN") != null)
@@ -26,6 +27,7 @@ public class Context : DbContext
     {
         modelBuilder.ApplyConfiguration(new UserMap());
         modelBuilder.ApplyConfiguration(new RequestUserMap());
+        modelBuilder.ApplyConfiguration(new LogMap());
         base.OnModelCreating(modelBuilder);
     }
 }

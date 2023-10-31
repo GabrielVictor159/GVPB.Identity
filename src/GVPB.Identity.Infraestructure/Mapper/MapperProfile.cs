@@ -14,6 +14,7 @@ namespace GVPB.Identity.Infraestructure.Mapper
         {
             CreateMap<User, Database.Entities.User>().ReverseMap();
             CreateMap<RequestUser, Database.Entities.RequestUser>().ReverseMap();
+            CreateMap<Log, Database.Entities.Log>().ReverseMap();
         }
     }
 }

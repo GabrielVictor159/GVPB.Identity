@@ -17,6 +17,9 @@ public class DomainFactory
             case nameof(RequestUser):
                 return RequestUserBuilder.New().WithId(Id ?? Guid.NewGuid()).Build();
 
+            case nameof(Log):
+                return LogBuilder.New().WithId(Id ?? Guid.NewGuid()).Build();
+
             default:
                 return null;
         }
