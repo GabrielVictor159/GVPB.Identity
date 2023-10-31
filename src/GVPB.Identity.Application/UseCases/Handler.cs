@@ -1,4 +1,6 @@
 ﻿
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 namespace GVPB.Identity.Application.UseCases;
 
 public abstract class Handler<T, F>
@@ -9,6 +11,8 @@ public abstract class Handler<T, F>
         this.sucessor = sucessor;
         return this;
     }
-    public abstract void ProcessRequest(T request, F? comunications);
+    public abstract void ProcessRequest(T request, F? comunications = default(F?));
+  
+
 }
 
