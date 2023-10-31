@@ -4,7 +4,7 @@ using GVPB.Identity.Domain.Enum;
 
 namespace GVPB.Identity.Application.UseCases.Login.Handlers;
 
-public class GenerateTokenHandler : Handler<LoginRequest>
+public class GenerateTokenHandler : Handler<LoginRequest, LoginComunications>
 {
     private readonly ITokenService tokenService;
 
@@ -13,11 +13,11 @@ public class GenerateTokenHandler : Handler<LoginRequest>
         this.tokenService = tokenService;
     }
 
-    public override void ProcessRequest(LoginRequest request)
+    public override void ProcessRequest(LoginRequest request, LoginComunications loginComunications)
     {
-        request.AddLog(LogType.Process, "Executing GenerateTokenHandler");
-        request.Token = tokenService.GenerateToken(request.User!);
-        sucessor?.ProcessRequest(request);
+        loginComunications.AddLog(LogType.Process, "Executing GenerateTokenHandler");
+        loginComunications.Token = tokenService.GenerateToken(loginComunications.User!);
+        sucessor?.ProcessRequest(request, loginComunications);
     }
 }
 

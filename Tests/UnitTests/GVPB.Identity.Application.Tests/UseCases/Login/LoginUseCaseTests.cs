@@ -37,7 +37,6 @@ public class LoginUseCaseTests
         userRepository.Add(user);
         var request = new LoginRequest() { UserName = user.UserName, Password = password };
         loginUseCase.Execute(request);
-        request.Logs.Should().NotContain(e=>e.Type == Domain.Enum.LogType.Error);
         notificationService.HasNotifications.Should().BeFalse();
         loginPresenter.ErrorMessage.Should().BeNull();
         loginPresenter.StandardOutput.Should().NotBeNull();

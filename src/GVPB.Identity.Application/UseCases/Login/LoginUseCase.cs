@@ -26,21 +26,22 @@ public class LoginUseCase : ILoginUseCase
 
     public void Execute(LoginRequest request)
     {
+        var loginComunications = new LoginComunications() { outputPort = outputPort };
         try
         {
-            userLoginHandler.ProcessRequest(request);
-            outputPort.Standard(new() { Token = request.Token });
+            userLoginHandler.ProcessRequest(request, loginComunications);
+            outputPort.Standard(new() { Token = loginComunications.Token });
         }
         catch(Exception e)
         {
-            request.AddLog(
+            loginComunications.AddLog(
                     LogType.Error,
                     $"Occurred an error to Login UseCase" +
                     $"Error: {e.Message ?? e.InnerException?.Message}, stacktrace: {e.StackTrace}");
         }
         finally
         {
-            logRepository.AddRange(request.Logs);
+            logRepository.AddRange(loginComunications.Logs);
         }
     }
 }

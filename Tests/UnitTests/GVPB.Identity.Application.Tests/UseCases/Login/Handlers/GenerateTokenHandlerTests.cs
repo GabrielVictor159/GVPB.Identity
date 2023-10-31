@@ -28,12 +28,11 @@ public class GenerateTokenHandlerTests
         var request = new LoginRequest() 
         {   
             UserName = "", 
-            Password = "", 
-            User = UserBuilder.New().Build()
+            Password = ""
         };
-
-        generateTokenHandler.ProcessRequest(request);
-        request.Token.Should().NotBeNullOrEmpty();
+        var loginComunications = new LoginComunications() { User = UserBuilder.New().Build()};
+        generateTokenHandler.ProcessRequest(request, loginComunications);
+        loginComunications.Token.Should().NotBeNullOrEmpty();
     }
 }
 
