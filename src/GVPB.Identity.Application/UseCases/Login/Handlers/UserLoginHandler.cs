@@ -20,9 +20,9 @@ public class UserLoginHandler : Handler<LoginRequest, LoginComunications>
         this.notificationService = notificationService;
     }
 
-    public override void ProcessRequest(LoginRequest request, LoginComunications loginComunications)
+    public override void ProcessRequest(LoginRequest request, LoginComunications? loginComunications)
     {
-        loginComunications.AddLog(LogType.Process, "Executing UserLoginHandler");
+        loginComunications!.AddLog(LogType.Process, "Executing UserLoginHandler");
         var entity = userRepository.GetByFilter(e=>
         e.UserName==request.UserName 
         && e.Password == request.Password.md5Hash()).FirstOrDefault();

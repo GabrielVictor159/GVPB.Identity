@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  gvpb.identity.devcontainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    extends:
+      file: ../src/docker-compose.override.yml
+      service: gvpb.identity.api

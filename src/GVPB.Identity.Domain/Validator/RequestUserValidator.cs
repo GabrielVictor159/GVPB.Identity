@@ -1,28 +1,33 @@
 ﻿
 using FluentValidation;
 using GVPB.Identity.Domain.Models;
+using Microsoft.Extensions.Localization;
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 
 namespace GVPB.Identity.Domain.Validator;
 
-public class RequestUserValidator : AbstractValidator<RequestUser>
+public class RequestUserValidator : LocalizatorValidator<RequestUserValidator, RequestUser>
 {
-    public RequestUserValidator()
+    public RequestUserValidator(ILanguageManager? localizer = null)
+    : base(localizer)
+    {
+    }
+    protected override void Configure()
     {
         RuleFor(e => e.Id)
            .NotNull()
            .NotEmpty()
-           .WithMessage("Id is required.");
+           .WithMessage(WithMessageLocalizer("IDREQUESTUSER","Id is required."));
 
         RuleFor(e => e.CreationDate)
            .NotNull()
            .NotEmpty()
-           .WithMessage("CreationDate is required.");
+           .WithMessage(WithMessageLocalizer("CREATIONDATEREQUESTUSER","CreationDate is required."));
 
         RuleFor(e => e.Body)
             .Must(BeAValidBody)
-            .WithMessage("The Body address is not valid.");
+            .WithMessage(WithMessageLocalizer("BODYREQUESTUSER","The Body address is not valid."));
     }
 
     private bool BeAValidBody(string body)

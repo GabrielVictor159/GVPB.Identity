@@ -1,0 +1,61 @@
+<root>
+  <!--Microsoft ResX Schema-->
+  <!--Version 2.0-->
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="IDLOG" xml:space="preserve">
+    <value>El Id es obligatorio.</value>
+</data>
+  <data name="LOGMESSAGE" xml:space="preserve">
+    <value>El mensaje es obligatorio.</value>
+</data>
+  <data name="LOGTYPE" xml:space="preserve">
+    <value>El tipo es obligatorio.</value>
+</data>
+  <data name="LOGDATE" xml:space="preserve">
+    <value>La fecha de registro es obligatoria.</value>
+</data>
+  <data name="IDUSER" xml:space="preserve">
+    <value>El Id es obligatorio.</value>
+</data>
+  <data name="IDREQUESTUSER" xml:space="preserve">
+    <value>El Id es obligatorio.</value>
+</data>
+  <data name="CREATIONDATEREQUESTUSER" xml:space="preserve">
+    <value>La fecha de creación es obligatoria.</value>
+</data>
+  <data name="BODYREQUESTUSER" xml:space="preserve">
+    <value>La dirección del cuerpo no es válida.</value>
+</data>
+  <data name="IDUSER" xml:space="preserve">
+    <value>El Id es obligatorio.</value>
+</data>
+  <data name="USEREMAILNOTDEFINID" xml:space="preserve">
+    <value>La dirección de correo electrónico no es válida.</value>
+</data>
+  <data name="USEREMAILEMPTY" xml:space="preserve">
+    <value>La dirección de correo electrónico es obligatoria.</value>
+</data>
+  <data name="USERNAMELENGTH" xml:space="preserve">
+    <value>El nombre de usuario debe tener al menos 5 caracteres de longitud.</value>
+</data>
+  <data name="USERNAMEEMPTY" xml:space="preserve">
+    <value>El nombre de usuario es obligatorio.</value>
+</data>
+  <data name="USERPASSWORD" xml:space="preserve">
+    <value>La contraseña debe tener más de 5 caracteres.</value>
+</data>
+  <data name="USERRULE" xml:space="preserve">
+    <value>La regla es obligatoria.</value>
+</data>
+</root>

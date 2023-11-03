@@ -15,4 +15,14 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GVPB.Identity.Domain\GVPB.Identity.Domain.csproj" />
+    <ProjectReference Include="..\GVPB.Identity.Infraestructure\GVPB.Identity.Infraestructure.csproj" />
+    <ProjectReference Include="..\GVPB.Identity.Application\GVPB.Identity.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources/" />
+  </ItemGroup>
+
 </Project>

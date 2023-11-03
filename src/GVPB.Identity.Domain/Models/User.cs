@@ -1,8 +1,10 @@
 ﻿
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using GVPB.Identity.Domain.Enum;
 using GVPB.Identity.Domain.Helpers;
 using GVPB.Identity.Domain.Validator;
-
+using Microsoft.Extensions.Localization;
 namespace GVPB.Identity.Domain.Models;
 
 public class User : Entity<User, UserValidator>
@@ -27,8 +29,8 @@ public class User : Entity<User, UserValidator>
     public required Rules Rule { get; init; }
 
     public User
-        ()
-        : base(new UserValidator())
+        (ILanguageManager? Localizer = null)
+        : base(new UserValidator(Localizer))
     {
     }
 }

@@ -10,4 +10,9 @@
     <ProjectReference Include="..\GVPB.Identity.Domain\GVPB.Identity.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Images/" />
+    <Folder Include="Images/PT/" />
+  </ItemGroup>
+
 </Project>

@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GVPB.Identity.Application.UseCases.Login;
-public interface ILoginUseCase
+public interface ILoginUseCase : IUseCase<LoginRequest>
 {
-    void Execute(LoginRequest request);
 }

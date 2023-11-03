@@ -1,31 +1,36 @@
 ﻿
 using FluentValidation;
 using GVPB.Identity.Domain.Models;
+using Microsoft.Extensions.Localization;
 
 namespace GVPB.Identity.Domain.Validator;
 
-public class LogValidator : AbstractValidator<Log>
+public class LogValidator : LocalizatorValidator<RequestUserValidator, Log>
 {
-    public LogValidator()
+    public LogValidator(ILanguageManager? localizer = null)
+    : base(localizer)
+    {
+    }
+    protected override void Configure()
     {
         RuleFor(e => e.Id)
            .NotNull()
            .NotEmpty()
-           .WithMessage("Id is required.");
+           .WithMessage(WithMessageLocalizer("IDLOG","Id is required."));
 
         RuleFor(e => e.Message)
             .NotNull()
             .NotEmpty()
-            .WithMessage("Message is required.");
+            .WithMessage(WithMessageLocalizer("LOGMESSAGE","Message is required."));
 
         RuleFor(e => e.Type)
             .NotNull()
-            .WithMessage("Type is required.");
+            .WithMessage(WithMessageLocalizer("LOGTYPE","Type is required."));
 
         RuleFor(e => e.LogDate)
             .NotNull()
             .NotEmpty()
-            .WithMessage("LogDate is required.");
+            .WithMessage(WithMessageLocalizer("LOGDATE","LogDate is required."));
     }
 }
 

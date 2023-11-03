@@ -1,37 +1,45 @@
 ﻿using FluentValidation;
+using GVPB.Identity.Domain;
 using GVPB.Identity.Domain.Models;
+using GVPB.Identity.Domain.Validator;
+using Microsoft.Extensions.Localization;
 using System.Text.RegularExpressions;
 
-public class UserValidator : AbstractValidator<User>
+public class UserValidator : LocalizatorValidator<UserValidator, User>
 {
-    public UserValidator()
+    public UserValidator(ILanguageManager? localizer = null)
+    : base(localizer)
     {
-        RuleFor(e => e.Id)
+    }
+    protected override void Configure()
+    {
+         RuleFor(e => e.Id)
             .NotNull()
             .NotEmpty()
-            .WithMessage("Id is required.");
+            .WithMessage(WithMessageLocalizer("IDUSER","Id Not Defined"));
 
         RuleFor(e => e.UserName)
             .NotNull()
             .NotEmpty()
+            .WithMessage(WithMessageLocalizer("USERNAMEEMPTY","Email Not Valid"))
             .MinimumLength(5)
-            .WithMessage("Username is required and must be at least 5 characters long.");
+            .WithMessage(WithMessageLocalizer("USERNAMELENGTH","UserName Not Defined"));
 
         RuleFor(e => e.PasswordLength)
             .GreaterThan(5)
-            .WithMessage("Password length must be greater than 5 characters.");
+            .WithMessage(WithMessageLocalizer("USERPASSWORD","PasswordLength Must be greater than 5"));
 
         RuleFor(e => e.Email)
             .NotNull()
             .NotEmpty()
+            .WithMessage(WithMessageLocalizer("USEREMAILEMPTY","Email Not Valid"))
             .Must(BeAValidEmail)
-            .WithMessage("The email address is not valid.");
+            .WithMessage(WithMessageLocalizer("USEREMAILNOTDEFINID","Email Not Valid"));
 
         RuleFor(e => e.Rule)
             .NotNull()
-            .WithMessage("Rule is required.");
+            .WithMessage(WithMessageLocalizer("USERRULE","Rule Not Valid"));
     }
-
     private bool BeAValidEmail(string email)
     {
         string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";

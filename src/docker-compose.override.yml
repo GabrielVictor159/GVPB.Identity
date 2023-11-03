@@ -8,6 +8,8 @@ services:
     ports:
       - "80"
       - "443"
+    env_file:
+      - env/Commons.env
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

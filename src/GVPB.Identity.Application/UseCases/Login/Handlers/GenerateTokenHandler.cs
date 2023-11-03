@@ -13,9 +13,9 @@ public class GenerateTokenHandler : Handler<LoginRequest, LoginComunications>
         this.tokenService = tokenService;
     }
 
-    public override void ProcessRequest(LoginRequest request, LoginComunications loginComunications)
+    public override void ProcessRequest(LoginRequest request, LoginComunications? loginComunications)
     {
-        loginComunications.AddLog(LogType.Process, "Executing GenerateTokenHandler");
+        loginComunications!.AddLog(LogType.Process, "Executing GenerateTokenHandler");
         loginComunications.Token = tokenService.GenerateToken(loginComunications.User!);
         sucessor?.ProcessRequest(request, loginComunications);
     }

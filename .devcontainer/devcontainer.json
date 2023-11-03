@@ -1,0 +1,20 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/dotnet-postgres
+{
+    "name": "C# (.NET) and PostgreSQL",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "gvpb.identity.devcontainer",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-dotnettools.csdevkit",
+				"fullstackspider.visual-nuget",
+				"ms-dotnettools.blazorwasm-companion",
+				"kreativ-software.csharpextensions"
+			]
+		}
+	}
+
+	
+}

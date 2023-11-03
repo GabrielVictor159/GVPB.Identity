@@ -1,6 +1,7 @@
 ﻿
 using GVPB.Identity.Domain.Enum;
 using GVPB.Identity.Domain.Validator;
+using Microsoft.Extensions.Localization;
 
 namespace GVPB.Identity.Domain.Models;
 
@@ -11,8 +12,8 @@ public class Log : Entity<Log, LogValidator>
     public required LogType Type { get; init; }
     public required DateTime LogDate { get; init; }
 
-    public Log()
-        : base(new LogValidator())
+    public Log(ILanguageManager? Localizer = null)
+        : base(new LogValidator(Localizer))
     {   
     }
 
