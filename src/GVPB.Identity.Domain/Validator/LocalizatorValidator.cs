@@ -21,7 +21,6 @@ public abstract class LocalizatorValidator<TValidator, TModel> : AbstractValidat
         }
         else
         {
-            var test = Localizer.GetKey(Id);
             return Localizer.GetKey(Id).Value;
         }
     }

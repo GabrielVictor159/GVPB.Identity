@@ -22,6 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GVPB.Identity.Application.T
 	ProjectSection(ProjectDependencies) = postProject
 		{89386B9B-972B-4F39-B76C-FAF4C6BD846C} = {89386B9B-972B-4F39-B76C-FAF4C6BD846C}
 		{B50342A6-D171-4EE1-9F62-48BA5C4992C0} = {B50342A6-D171-4EE1-9F62-48BA5C4992C0}
+		{C07F54A2-B770-4C4E-B728-E871E7651AD4} = {C07F54A2-B770-4C4E-B728-E871E7651AD4}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GVPB.Identity.Api.Tests", "..\Tests\UnitTests\GVPB.Identity.Api.Tests\GVPB.Identity.Api.Tests.csproj", "{ACF25F7B-E737-4691-8A77-47B501621480}"
@@ -51,7 +52,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GVPB.Identity.BuildersTests
 		{CB0F6A84-678F-4E4E-989A-0F1CADCFA2F6} = {CB0F6A84-678F-4E4E-989A-0F1CADCFA2F6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResxGen", "ResxGen\ResxGen.csproj", "{046662CB-8C8C-496B-A553-0ED5A0D77463}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResxGen", "ResxGen\ResxGen.csproj", "{046662CB-8C8C-496B-A553-0ED5A0D77463}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Env", "Env", "{057AC914-E7B0-4A88-B888-BA30D322B52F}"
+	ProjectSection(SolutionItems) = preProject
+		Env\Commons.env = Env\Commons.env
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

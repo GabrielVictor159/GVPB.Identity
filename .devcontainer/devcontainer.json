@@ -11,7 +11,8 @@
 				"ms-dotnettools.csdevkit",
 				"fullstackspider.visual-nuget",
 				"ms-dotnettools.blazorwasm-companion",
-				"kreativ-software.csharpextensions"
+				"kreativ-software.csharpextensions",
+				"DominicVonk.vscode-resx-editor"
 			]
 		}
 	}

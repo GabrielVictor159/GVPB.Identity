@@ -1,18 +1,48 @@
 ﻿
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using GVPB.Identity.Application.Interfaces.Database;
+using Newtonsoft.Json;
 
 namespace GVPB.Identity.Application.UseCases;
 
-public abstract class Handler<T, F>
+public abstract class Handler<T, F> : ICloneable where F : IComunications
 {
     protected Handler<T, F>? sucessor;
+    private List<dynamic> objects = new List<dynamic>();
     public dynamic SetSucessor(Handler<T, F> sucessor)
     {
         this.sucessor = sucessor;
         return this;
     }
-    public abstract void ProcessRequest(T request, F? comunications = default(F?));
-  
+    protected abstract void ProcessRequest(T request, F? comunications = default(F?));
 
+    protected void SetObjectsLog(params dynamic[] items)
+    {
+        List<dynamic> dynamicList = new List<dynamic>(items);
+        foreach (var item in dynamicList)
+        {
+            objects.Add(item);
+        }
+    }
+
+    public void Execute(T request, F? comunications = default(F?))
+    {
+        var className = Clone().GetType().FullName;
+
+        comunications?.AddLog(Domain.Enum.LogType.Process,$"Executing {className}");
+
+        ProcessRequest(request,comunications);
+
+        if(objects.Any())
+        {
+        comunications?.AddLog(Domain.Enum.LogType.Information,$"{className} Objects: {JsonConvert.SerializeObject(objects)}");
+        }
+
+        sucessor?.Execute(request,comunications);
+    }
+
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
 }
 

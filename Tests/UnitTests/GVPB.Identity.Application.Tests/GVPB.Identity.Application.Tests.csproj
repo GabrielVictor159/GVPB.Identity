@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\GVPB.Identity.Infraestructure\GVPB.Identity.Infraestructure.csproj" />
+	  <ProjectReference Include="..\..\..\src\GVPB.Identity.Api\GVPB.Identity.Api.csproj" />
     <ProjectReference Include="..\..\Common\GVPB.Identity.BuildersTests\GVPB.Identity.BuildersTests.csproj" />
   </ItemGroup>
 

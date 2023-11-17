@@ -29,7 +29,7 @@ public class LoginUseCase : ILoginUseCase
         var loginComunications = new LoginComunications() { outputPort = outputPort };
         try
         {
-            userLoginHandler.ProcessRequest(request, loginComunications);
+            userLoginHandler.Execute(request, loginComunications);
             outputPort.Standard(new() { Token = loginComunications.Token });
         }
         catch(Exception e)

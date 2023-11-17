@@ -14,13 +14,12 @@ public class ValidateDomainHandler : Handler<RequestUserRequest, RequestUserComu
         this.notificationService = notificationService;
     }
 
-    public override void ProcessRequest(RequestUserRequest request, RequestUserComunications? comunications)
+    protected override void ProcessRequest(RequestUserRequest request, RequestUserComunications? comunications)
     {
-        comunications!.AddLog(LogType.Process, "Executing ValidateDomainHandler");
         if(!request.NewUser.IsValid)
         {
             notificationService.AddNotifications(request.NewUser.ValidationResult);
         }
-        sucessor?.ProcessRequest(request,comunications);
+
     }
 }

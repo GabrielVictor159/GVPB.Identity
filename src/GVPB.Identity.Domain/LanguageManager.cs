@@ -7,7 +7,7 @@ public interface ILanguageManager
 }
 public class LanguageManager<T> : ILanguageManager
 {
-private IStringLocalizer? localizer;
+   public IStringLocalizer? localizer;
    private IStringLocalizerFactory factory;
 
    public LanguageManager(IStringLocalizerFactory factory)

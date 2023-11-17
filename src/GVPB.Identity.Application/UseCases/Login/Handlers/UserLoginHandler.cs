@@ -20,20 +20,19 @@ public class UserLoginHandler : Handler<LoginRequest, LoginComunications>
         this.notificationService = notificationService;
     }
 
-    public override void ProcessRequest(LoginRequest request, LoginComunications? loginComunications)
+    protected override void ProcessRequest(LoginRequest request, LoginComunications? loginComunications)
     {
-        loginComunications!.AddLog(LogType.Process, "Executing UserLoginHandler");
         var entity = userRepository.GetByFilter(e=>
         e.UserName==request.UserName 
         && e.Password == request.Password.md5Hash()).FirstOrDefault();
         if(entity == null)
         {
-            loginComunications.outputPort?.NotFound("Unable to find any user with the provided data.");
-            notificationService.AddNotification("User Invalid", "Unable to find any user with the provided data.");
+            loginComunications!.outputPort?.NotFound(request.Localizer.GetKey("LOGINNOTFOUND").Value);
+            notificationService.AddNotification("User Invalid", request.Localizer.GetKey("LOGINNOTFOUND").Value);
             return;
         }
-        loginComunications.User = entity;
-        sucessor?.ProcessRequest(request, loginComunications);
+        loginComunications!.User = entity;
+        SetObjectsLog(entity);
     }
 }
 

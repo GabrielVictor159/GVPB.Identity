@@ -3,9 +3,10 @@ using System.Net.Mail;
 using System.Net.Mime;
 using System.IO;
 using ManagementServices.variables.Application.Interfaces;
+using GVPB.Identity.Application;
 namespace GVPB.Identity.Infraestructure;
 
-public class EmailService
+public class EmailService : IEmailService
 {
     private readonly IEnvVariableRepository envVariableRepository;
 

@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images/" />
-    <Folder Include="Images/PT/" />
+    <Folder Include="Resources\UseCases\ConfirmUser\" />
   </ItemGroup>
 
 </Project>

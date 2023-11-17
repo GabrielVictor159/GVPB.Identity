@@ -58,4 +58,7 @@
   <data name="USERRULE" xml:space="preserve">
     <value>Rule is required.</value>
   </data>
+  <data name="LOGINNOTFOUND" xml:space="preserve">
+    <value>Unable to find any user with the provided data.</value>
+  </data>
 </root>

@@ -58,4 +58,7 @@
   <data name="USERRULE" xml:space="preserve">
     <value>A regra é obrigatória.</value>
 </data>
+  <data name="LOGINNOTFOUND" xml:space="preserve">
+    <value>Não foi possível encontrar nenhum usuário com os dados fornecidos.</value>
+  </data>
 </root>
