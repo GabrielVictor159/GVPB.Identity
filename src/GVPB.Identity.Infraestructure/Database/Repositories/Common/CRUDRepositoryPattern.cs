@@ -34,11 +34,13 @@ public abstract class CRUDRepositoryPattern<Domain, Entity> where Entity : class
         return mapper.Map<Domain>(context.Set<Entity>().Find(id));
     }
 
-    public List<Domain> GetByFilter(Expression<Func<Domain, bool>> expression)
+    public List<Domain> GetByFilter(Func<Domain, bool> predicate)
     {
-        var predicate = mapper.Map<Expression<Func<Entity, bool>>>(expression);
-        return mapper.Map<List<Domain>>(context.Set<Entity>().Where(predicate).ToList());
+        var entities = context.Set<Entity>().ToList();
+        var filteredEntities = entities.Where(entity => predicate(mapper.Map<Domain>(entity))).ToList();
+        return filteredEntities.Select(entity => mapper.Map<Domain>(entity)).ToList();
     }
+
 
     public int Update(Domain domain)
     {

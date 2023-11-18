@@ -18,7 +18,7 @@ public class LoginUseCaseTests
     private readonly INotificationService notificationService;
     private readonly ILoginUseCase loginUseCase;
     private readonly LoginPresenter loginPresenter;
-    LanguageManager<SharedResources> languageService;
+    private readonly LanguageManager<SharedResources> languageService;
 
     public LoginUseCaseTests
         (IUserRepository userRepository, 

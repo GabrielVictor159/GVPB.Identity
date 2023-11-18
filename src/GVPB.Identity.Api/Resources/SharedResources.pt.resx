@@ -58,7 +58,16 @@
   <data name="USERRULE" xml:space="preserve">
     <value>A regra é obrigatória.</value>
 </data>
+  <data name="CONFIRMUSER_NOTFOUND" xml:space="preserve">
+    <value>Não foi possivel encontrar o request especificado</value>
+  </data>
   <data name="LOGINNOTFOUND" xml:space="preserve">
     <value>Não foi possível encontrar nenhum usuário com os dados fornecidos.</value>
+  </data>
+  <data name="REQUESTUSER_EMAILSUBJECT" xml:space="preserve">
+    <value>Confirmação de Usuario</value>
+  </data>
+  <data name="REQUESTUSER_VERIFYPROPERTY" xml:space="preserve">
+    <value>Já existe um usuário no banco de dados com</value>
   </data>
 </root>

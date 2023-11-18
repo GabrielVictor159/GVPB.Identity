@@ -1,6 +1,7 @@
 ﻿
 using AutoMapper;
 using GVPB.Identity.Domain.Models;
+using System.Linq.Expressions;
 
 namespace GVPB.Identity.Infraestructure.Mapper
 {

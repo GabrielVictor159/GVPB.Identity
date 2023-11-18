@@ -18,6 +18,7 @@ public class CreateUserHandler : Handler<ConfirmUserRequest, ConfirmUserComunica
     {
        var user = JsonConvert.DeserializeObject<User>(comunications!.requestUser!.Body);
        userRepository.Add(user!);
+       comunications.user = user;
        SetObjectsLog(user!);
     }
 }

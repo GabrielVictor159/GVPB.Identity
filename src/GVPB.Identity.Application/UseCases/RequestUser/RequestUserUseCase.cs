@@ -10,7 +10,7 @@ public class RequestUserUseCase : IRequestUserUseCase
 {
     private readonly ILogRepository logRepository;
     private readonly ValidateDomainHandler validateDomainHandler;
-    private readonly IOutputPort<RequestUserReponse> outputPort;
+    private readonly IOutputPort<RequestUserResponse> outputPort;
 
     public RequestUserUseCase
         (ILogRepository logRepository, 
@@ -18,7 +18,7 @@ public class RequestUserUseCase : IRequestUserUseCase
         VerifyDisponibilityTermsHandler verifyDisponibilityTermsHandler,
         SaveRequestUserHandler saveRequestUserHandler,
         SendEmailHandler sendEmailHandler,
-        IOutputPort<RequestUserReponse> outputPort)
+        IOutputPort<RequestUserResponse> outputPort)
     {
         this.logRepository = logRepository;
         validateDomainHandler

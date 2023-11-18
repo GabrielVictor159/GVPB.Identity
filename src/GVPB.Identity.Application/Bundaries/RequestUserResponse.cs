@@ -1,7 +1,7 @@
 ﻿
 namespace GVPB.Identity.Application.Bundaries;
 
-public class RequestUserReponse
+public class RequestUserResponse
 {
     public bool Sucess { get; init; } = true;
 }

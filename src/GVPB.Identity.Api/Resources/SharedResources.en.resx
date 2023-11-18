@@ -58,7 +58,16 @@
   <data name="USERRULE" xml:space="preserve">
     <value>Rule is required.</value>
   </data>
+  <data name="CONFIRMUSER_NOTFOUND" xml:space="preserve">
+    <value>Unable to find the specified request</value>
+  </data>
   <data name="LOGINNOTFOUND" xml:space="preserve">
     <value>Unable to find any user with the provided data.</value>
+  </data>
+  <data name="REQUESTUSER_EMAILSUBJECT" xml:space="preserve">
+    <value>User Confirmation</value>
+  </data>
+  <data name="REQUESTUSER_VERIFYPROPERTY" xml:space="preserve">
+    <value>There is already a user in the database with</value>
   </data>
 </root>

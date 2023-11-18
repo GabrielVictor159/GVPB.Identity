@@ -20,10 +20,13 @@ public class GetRequestUserHandler : Handler<ConfirmUserRequest, ConfirmUserComu
         var requestUser = requestUserRepository.GetOne(request.Id);
         if(requestUser == null)
         {
-            notificationService.AddNotification("Object Not found",$"");
+            notificationService.AddNotification("Object Not found",$"{request.localizer.GetKey("CONFIRMUSER_NOTFOUND")} Id = {request.Id}");
+            comunications!.outputPort.NotFound($"{request.localizer.GetKey("CONFIRMUSER_NOTFOUND")} Id = {request.Id}");
+           
             return;
         }
-
+        comunications!.requestUser = requestUser;
+        SetObjectsLog(requestUser);
     }
 }
 

@@ -10,14 +10,14 @@ public class ConfirmUserUseCase : IConfirmUserUseCase
 {
     private readonly ILogRepository logRepository;
     private readonly GetRequestUserHandler getRequestUserHandler;
-    private readonly IOutputPort<ConfirmUserComunications> outputPort;
+    private readonly IOutputPort<ConfirmUserResponse> outputPort;
 
     public ConfirmUserUseCase
     (ILogRepository logRepository, 
     GetRequestUserHandler getRequestUserHandler,
     CreateUserHandler createUserHandler,
     RemoveRequestUserHandler removeRequestUserHandler,
-    IOutputPort<ConfirmUserComunications> outputPort)
+    IOutputPort<ConfirmUserResponse> outputPort)
     {
         this.logRepository = logRepository;
         getRequestUserHandler
@@ -29,10 +29,11 @@ public class ConfirmUserUseCase : IConfirmUserUseCase
 
     public void Execute(ConfirmUserRequest request)
     {
-        var RequestUserComunications = new ConfirmUserComunications();
+        var RequestUserComunications = new ConfirmUserComunications() { outputPort = outputPort };
         try
         {
             getRequestUserHandler.Execute(request, RequestUserComunications);
+            outputPort.Standard(new ConfirmUserResponse(){User = RequestUserComunications.user!});
         }
         catch (Exception e)
         {

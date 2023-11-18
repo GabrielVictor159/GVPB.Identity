@@ -5,7 +5,7 @@ namespace GVPB.Identity.Application.Resources.Images.Factory;
 
 public static class ApplicationImagesFactory
 {
-    private static string pathImages = "/Resources/Images/";
+    private static string pathImages = Environment.GetEnvironmentVariable("PATH_IMAGES_APLICATIONS")!;
     public static string? GetBase64Images(ImagesApplication imagesApplication, string culture)
     {
         switch (imagesApplication)

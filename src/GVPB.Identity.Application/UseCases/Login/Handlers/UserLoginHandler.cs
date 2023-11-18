@@ -22,9 +22,10 @@ public class UserLoginHandler : Handler<LoginRequest, LoginComunications>
 
     protected override void ProcessRequest(LoginRequest request, LoginComunications? loginComunications)
     {
+        var password = request.Password.md5Hash();
         var entity = userRepository.GetByFilter(e=>
         e.UserName==request.UserName 
-        && e.Password == request.Password.md5Hash()).FirstOrDefault();
+        && e.Password.Equals(password)).FirstOrDefault();
         if(entity == null)
         {
             loginComunications!.outputPort?.NotFound(request.Localizer.GetKey("LOGINNOTFOUND").Value);
