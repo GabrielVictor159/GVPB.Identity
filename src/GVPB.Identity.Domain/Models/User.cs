@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using GVPB.Identity.Domain.Enum;
 using GVPB.Identity.Domain.Helpers;
 using GVPB.Identity.Domain.Validator;
-using Microsoft.Extensions.Localization;
 namespace GVPB.Identity.Domain.Models;
 
 public class User : Entity<User, UserValidator>

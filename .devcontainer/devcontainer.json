@@ -12,7 +12,8 @@
 				"fullstackspider.visual-nuget",
 				"ms-dotnettools.blazorwasm-companion",
 				"kreativ-software.csharpextensions",
-				"DominicVonk.vscode-resx-editor"
+				"DominicVonk.vscode-resx-editor",
+				"formulahendry.dotnet-test-explorer"
 			]
 		}
 	}

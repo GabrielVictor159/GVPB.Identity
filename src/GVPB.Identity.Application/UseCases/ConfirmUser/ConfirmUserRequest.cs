@@ -14,7 +14,7 @@ public class ConfirmUserRequest
 
 public class ConfirmUserComunications : IComunications
 {
-    public RequestUser? requestUser { get; set; }
+    public Domain.Models.RequestUser? requestUser { get; set; }
     public User? user { get; set; }  
     public required IOutputPort<ConfirmUserResponse> outputPort { get; init; }
 }

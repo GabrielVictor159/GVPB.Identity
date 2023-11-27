@@ -26,27 +26,11 @@ public class RequestUserValidator : LocalizatorValidator<RequestUserValidator, R
            .WithMessage(WithMessageLocalizer("CREATIONDATEREQUESTUSER","CreationDate is required."));
 
         RuleFor(e => e.Body)
-            .Must(BeAValidBody)
+            .NotNull()
+            .NotEmpty()
             .WithMessage(WithMessageLocalizer("BODYREQUESTUSER","The Body address is not valid."));
     }
 
-    private bool BeAValidBody(string body)
-    {
-        try
-        {
-            var entity = JsonConvert.DeserializeObject<User>(body);
-
-            if (entity != null)
-            {
-                return entity.IsValid;
-            }
-
-            return false;
-        }
-        catch (Exception)
-        {
-            return false;
-        }
-    }
+ 
 }
 

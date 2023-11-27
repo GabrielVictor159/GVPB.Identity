@@ -3,7 +3,7 @@ using GVPB.Identity.Application.Interfaces.Services;
 using GVPB.Identity.Application.UseCases;
 using GVPB.Identity.Domain.Enum;
 
-namespace GVPB.Identity.Application;
+namespace GVPB.Identity.Application.UseCases.RequestUser.Handlers;
 
 public class ValidateDomainHandler : Handler<RequestUserRequest, RequestUserComunications>
 {
@@ -19,6 +19,8 @@ public class ValidateDomainHandler : Handler<RequestUserRequest, RequestUserComu
         if(!request.NewUser.IsValid)
         {
             notificationService.AddNotifications(request.NewUser.ValidationResult);
+            Break();
+            return;
         }
 
     }

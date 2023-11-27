@@ -1,4 +1,4 @@
-﻿namespace GVPB.Identity.Application;
+﻿namespace GVPB.Identity.Application.UseCases.RequestUser;
 
 public interface IRequestUserUseCase : IUseCase<RequestUserRequest>
 {

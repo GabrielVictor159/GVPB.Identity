@@ -2,7 +2,7 @@
 using GVPB.Identity.Domain.Enum;
 using GVPB.Identity.Domain.Models;
 
-namespace GVPB.Identity.Application;
+namespace GVPB.Identity.Application.UseCases.RequestUser;
 
 public class RequestUserRequest
 {
@@ -14,5 +14,5 @@ public class RequestUserRequest
 
 public class RequestUserComunications : IComunications
 {
-    public RequestUser? requestUser {get; set;}
+    public Domain.Models.RequestUser? requestUser {get; set;}
 }

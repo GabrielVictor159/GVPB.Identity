@@ -3,7 +3,7 @@ using GVPB.Identity.Application.UseCases;
 using GVPB.Identity.Domain.Models;
 using Newtonsoft.Json;
 
-namespace GVPB.Identity.Application;
+namespace GVPB.Identity.Application.UseCases.RequestUser.Handlers;
 
 public class SaveRequestUserHandler : Handler<RequestUserRequest, RequestUserComunications>
 {
@@ -16,7 +16,7 @@ public class SaveRequestUserHandler : Handler<RequestUserRequest, RequestUserCom
 
     protected override void ProcessRequest(RequestUserRequest request, RequestUserComunications? comunications)
     {
-        var requestUser = new RequestUser(request.Localizer)
+        var requestUser = new Domain.Models.RequestUser(request.Localizer)
         {
             Id = Guid.NewGuid(),
             Body = JsonConvert.SerializeObject(request.NewUser),

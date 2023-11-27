@@ -3,8 +3,9 @@ using GVPB.Identity.Application.Interfaces.Database;
 using GVPB.Identity.Application.UseCases.Login.Handlers;
 using GVPB.Identity.Application.UseCases.Login;
 using GVPB.Identity.Domain.Enum;
+using GVPB.Identity.Application.UseCases.RequestUser.Handlers;
 
-namespace GVPB.Identity.Application;
+namespace GVPB.Identity.Application.UseCases.RequestUser;
 
 public class RequestUserUseCase : IRequestUserUseCase
 {
@@ -44,6 +45,7 @@ public class RequestUserUseCase : IRequestUserUseCase
             LogType.Error,
                     $"Occurred an error to Login UseCase" +
                     $"Error: {e.Message ?? e.InnerException?.Message}, stacktrace: {e.StackTrace}");
+            outputPort.Error(e.Message!);
         }
         finally
         {

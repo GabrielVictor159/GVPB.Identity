@@ -4,7 +4,7 @@ using GVPB.Identity.Application.UseCases;
 using GVPB.Identity.Domain.Enum;
 using GVPB.Identity.Domain.Models;
 
-namespace GVPB.Identity.Application;
+namespace GVPB.Identity.Application.UseCases.RequestUser.Handlers;
 
 public class VerifyDisponibilityTermsHandler : Handler<RequestUserRequest, RequestUserComunications>
 {
@@ -24,6 +24,7 @@ public class VerifyDisponibilityTermsHandler : Handler<RequestUserRequest, Reque
         
         if(notificationService.HasNotifications)
         {
+            Break();
             return;
         }
     }

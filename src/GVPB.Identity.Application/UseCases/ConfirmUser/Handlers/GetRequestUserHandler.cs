@@ -22,7 +22,7 @@ public class GetRequestUserHandler : Handler<ConfirmUserRequest, ConfirmUserComu
         {
             notificationService.AddNotification("Object Not found",$"{request.localizer.GetKey("CONFIRMUSER_NOTFOUND")} Id = {request.Id}");
             comunications!.outputPort.NotFound($"{request.localizer.GetKey("CONFIRMUSER_NOTFOUND")} Id = {request.Id}");
-           
+            Break();
             return;
         }
         comunications!.requestUser = requestUser;

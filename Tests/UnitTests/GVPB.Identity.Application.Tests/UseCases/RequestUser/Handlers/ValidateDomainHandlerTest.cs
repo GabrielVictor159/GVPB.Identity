@@ -1,12 +1,13 @@
 ﻿using FluentAssertions;
 using GVPB.Identity.Api;
 using GVPB.Identity.Application.Interfaces.Services;
+using GVPB.Identity.Application.UseCases.RequestUser.Handlers;
 using GVPB.Identity.Domain;
 using GVPB.Identity.Infraestructure.Tests.Builders;
 using Xunit;
 using Xunit.Frameworks.Autofac;
 
-namespace GVPB.Identity.Application.Tests;
+namespace GVPB.Identity.Application.Tests.UseCases.RequestUser.Handlers;
 
 [UseAutofacTestFramework]
 public class ValidateDomainHandlerTest

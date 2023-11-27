@@ -70,4 +70,8 @@
   <data name="REQUESTUSER_VERIFYPROPERTY" xml:space="preserve">
     <value>Já existe um usuário no banco de dados com</value>
   </data>
+  <data name="UPDATEUSER_NOTFOUND" xml:space="preserve">
+    <value>Usuário não encontrado.</value>
+    <comment />
+  </data>
 </root>

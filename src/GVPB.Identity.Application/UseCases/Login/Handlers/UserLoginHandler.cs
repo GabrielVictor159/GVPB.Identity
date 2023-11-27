@@ -30,6 +30,7 @@ public class UserLoginHandler : Handler<LoginRequest, LoginComunications>
         {
             loginComunications!.outputPort?.NotFound(request.Localizer.GetKey("LOGINNOTFOUND").Value);
             notificationService.AddNotification("User Invalid", request.Localizer.GetKey("LOGINNOTFOUND").Value);
+            Break();
             return;
         }
         loginComunications!.User = entity;

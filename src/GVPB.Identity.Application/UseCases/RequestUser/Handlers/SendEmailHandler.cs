@@ -2,7 +2,7 @@
 using GVPB.Identity.Application.Resources.Images.Factory.Enum;
 using GVPB.Identity.Application.UseCases;
 
-namespace GVPB.Identity.Application;
+namespace GVPB.Identity.Application.UseCases.RequestUser.Handlers;
 
 public class SendEmailHandler : Handler<RequestUserRequest, RequestUserComunications>
 {

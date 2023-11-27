@@ -5,6 +5,7 @@ using GVPB.Identity.Application.Interfaces.Database;
 using GVPB.Identity.Application.Interfaces.Services;
 using GVPB.Identity.Application.Tests.Mocks.Presenters;
 using GVPB.Identity.Application.UseCases.Login;
+using GVPB.Identity.Application.UseCases.RequestUser;
 using GVPB.Identity.Domain;
 using GVPB.Identity.Infraestructure.Tests.Builders;
 using Newtonsoft.Json;

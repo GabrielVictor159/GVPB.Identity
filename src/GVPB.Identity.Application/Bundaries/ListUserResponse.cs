@@ -2,7 +2,7 @@
 
 namespace GVPB.Identity.Application.Bundaries;
 
-public class ConfirmUserResponse
+public class ListUserResponse
 {
-    public required User User {get; init;}
+    public required List<User> Users {get; init;}
 }

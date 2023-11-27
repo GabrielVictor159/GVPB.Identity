@@ -38,6 +38,7 @@ public class LoginUseCase : ILoginUseCase
                     LogType.Error,
                     $"Occurred an error to Login UseCase" +
                     $"Error: {e.Message ?? e.InnerException?.Message}, stacktrace: {e.StackTrace}");
+            outputPort.Error(e.Message!);
         }
         finally
         {

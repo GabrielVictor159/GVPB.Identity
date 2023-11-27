@@ -3,6 +3,8 @@ using FluentAssertions;
 using GVPB.Identity.Api;
 using GVPB.Identity.Application.Interfaces.Database;
 using GVPB.Identity.Application.Interfaces.Services;
+using GVPB.Identity.Application.UseCases.RequestUser;
+using GVPB.Identity.Application.UseCases.RequestUser.Handlers;
 using GVPB.Identity.Domain;
 using GVPB.Identity.Infraestructure.Tests.Builders;
 using Xunit;
