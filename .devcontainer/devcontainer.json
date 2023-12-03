@@ -2,21 +2,18 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet-postgres
 {
     "name": "C# (.NET) and PostgreSQL",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "gvpb.identity.devcontainer",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "dockerComposeFile": "../src/docker-compose.devcontainer.yml",
+    "service": "app",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"ms-dotnettools.csdevkit",
 				"fullstackspider.visual-nuget",
-				"ms-dotnettools.blazorwasm-companion",
-				"kreativ-software.csharpextensions",
-				"DominicVonk.vscode-resx-editor",
-				"formulahendry.dotnet-test-explorer"
+				"formulahendry.dotnet-test-explorer",
+				"ms-azuretools.vscode-docker",
+				"frasercrosbie.csharp-model-to-builder"
 			]
 		}
 	}
-
-	
 }

@@ -22,5 +22,6 @@ public class SearchUserHandler : Handler<UpdateUserRequest, UpdateUserComunicati
             return;
         }
         comunications!.User = user;
+        SetObjectsLog(user);
     }
 }

@@ -42,7 +42,7 @@ public class UserLoginHandlerTests
         var user = UserBuilder.New().WithPassword(password).Build();
         userRepository.Add(user);
         var loginComunications = new LoginComunications() { outputPort = loginPresenter };
-        var request = new LoginRequest() { UserName = user.UserName, Password = password, Localizer= languageService };
+        var request = new LoginRequest() { UserNameOrUserEmail = user.UserName, Password = password, Localizer= languageService };
         userLoginHandler.Execute(request, loginComunications);
         loginComunications.User.Should().NotBeNull();
     }
@@ -50,7 +50,7 @@ public class UserLoginHandlerTests
     [Fact]
     public void Should_Login_Failure_User()
     {
-        var request = new LoginRequest() { UserName = "Teste", Password = "Teste", Localizer = languageService };
+        var request = new LoginRequest() { UserNameOrUserEmail = "Teste", Password = "Teste", Localizer = languageService };
         var loginComunications = new LoginComunications() { outputPort = loginPresenter };
         userLoginHandler.Execute(request, loginComunications);
         loginComunications.User.Should().BeNull();

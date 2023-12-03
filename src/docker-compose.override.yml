@@ -10,19 +10,47 @@ services:
       - "443"
     env_file:
       - env/Commons.env
+      - env/Databases.env
+    networks:
+      - gvpb-identity
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
+  gvpb.identity.db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5548:5432
+    networks:
+      - gvpb-identity
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+
   gvpb.identity.web:
+    env_file:
+      - env/Commons.env
+      - env/Databases.env
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
       - "80"
       - "443"
+    networks:
+      - gvpb-identity
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+networks:
+  gvpb-identity:
+
+volumes:
+  postgres-data:
 
 

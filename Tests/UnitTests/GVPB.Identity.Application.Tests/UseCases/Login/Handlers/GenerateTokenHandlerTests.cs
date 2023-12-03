@@ -32,7 +32,7 @@ public class GenerateTokenHandlerTests
     {
         var request = new LoginRequest()
         {
-            UserName = "",
+            UserNameOrUserEmail = "",
             Password = "",
             Localizer = languageService
         };

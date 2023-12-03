@@ -1,0 +1,38 @@
+version: '3.4'
+services:
+  gvpb.identity.db:
+    image: postgres:latest
+    restart: always
+    ports:
+    - 5548:5432
+    volumes:
+    - postgres-data:/var/lib/postgresql/data
+    networks:
+    - gvpb-identity
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+  app:
+    image: 926_devcontainer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - '80'
+    - '443'
+    volumes:
+    - ../..:/workspaces:cached
+    networks:
+    - gvpb-identity
+    command: sleep infinity
+    env_file:
+    - env/Commons.env
+    - env/Databases.env
+    environment:
+    - ASPNETCORE_ENVIRONMENT=Development
+    - ASPNETCORE_URLS=https://+:443;http://+:80
+volumes:
+  postgres-data: 
+networks:
+  gvpb-identity: 

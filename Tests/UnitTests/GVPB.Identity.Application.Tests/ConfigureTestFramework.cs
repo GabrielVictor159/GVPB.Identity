@@ -22,6 +22,7 @@ public class ConfigureTestFramework : AutofacTestFramework
        : base(diagnosticMessageSink)
     {
         Environment.SetEnvironmentVariable("SECRET", Guid.NewGuid().ToString());
+        Environment.SetEnvironmentVariable("DBCONN", null);
         Environment.SetEnvironmentVariable("TOKEN_EXPIRES", "8");
         Environment.SetEnvironmentVariable
             ("PATH_IMAGES_APLICATIONS",

@@ -40,7 +40,7 @@ public class LoginUseCaseTests
         string password = "password";
         var user = UserBuilder.New().WithPassword(password).Build();
         userRepository.Add(user);
-        var request = new LoginRequest() { UserName = user.UserName, Password = password, Localizer = languageService };
+        var request = new LoginRequest() { UserNameOrUserEmail = user.UserName, Password = password, Localizer = languageService };
         loginUseCase.Execute(request);
         notificationService.HasNotifications.Should().BeFalse();
         loginPresenter.ErrorMessage.Should().BeNull();

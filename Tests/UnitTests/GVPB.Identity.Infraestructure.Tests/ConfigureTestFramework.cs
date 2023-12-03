@@ -13,6 +13,7 @@ public class ConfigureTestFramework : AutofacTestFramework
     public ConfigureTestFramework(IMessageSink diagnosticMessageSink)
        : base(diagnosticMessageSink)
     {
+        Environment.SetEnvironmentVariable("DBCONN", null);
         Environment.SetEnvironmentVariable("SECRET",Guid.NewGuid().ToString());
         Environment.SetEnvironmentVariable("TOKEN_EXPIRES", "8");
     }

@@ -3,7 +3,7 @@ using GVPB.Identity.Application.Tests.Mocks;
 
 namespace GVPB.Identity.Application.Tests;
 
-public class ListUserPresenter : Presenter<ListUserResponse>
+public class UpdateUserPresenter : Presenter<UpdateUserResponse>
 {
 
 }

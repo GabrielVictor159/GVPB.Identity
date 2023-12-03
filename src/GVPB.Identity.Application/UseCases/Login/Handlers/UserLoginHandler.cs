@@ -4,6 +4,7 @@ using GVPB.Identity.Application.Interfaces.Database;
 using GVPB.Identity.Application.Interfaces.Services;
 using GVPB.Identity.Domain.Enum;
 using GVPB.Identity.Domain.Helpers;
+using GVPB.Identity.Domain.Models;
 
 namespace GVPB.Identity.Application.UseCases.Login.Handlers;
 
@@ -23,9 +24,16 @@ public class UserLoginHandler : Handler<LoginRequest, LoginComunications>
     protected override void ProcessRequest(LoginRequest request, LoginComunications? loginComunications)
     {
         var password = request.Password.md5Hash();
-        var entity = userRepository.GetByFilter(e=>
-        e.UserName==request.UserName 
+        User? entity;
+        entity = userRepository.GetByFilter(e=>
+        e.UserName==request.UserNameOrUserEmail 
         && e.Password.Equals(password)).FirstOrDefault();
+        if(entity == null)
+        {
+        entity = userRepository.GetByFilter(e=>
+        e.Email==request.UserNameOrUserEmail 
+        && e.Password.Equals(password)).FirstOrDefault();
+        }
         if(entity == null)
         {
             loginComunications!.outputPort?.NotFound(request.Localizer.GetKey("LOGINNOTFOUND").Value);

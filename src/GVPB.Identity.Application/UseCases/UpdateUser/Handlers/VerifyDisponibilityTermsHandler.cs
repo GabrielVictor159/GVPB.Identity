@@ -16,6 +16,7 @@ public class VerifyDisponibilityTermsHandler : Handler<UpdateUserRequest, Update
     }
     protected override void ProcessRequest(UpdateUserRequest request, UpdateUserComunications? comunications = null)
     {
+        if(request.NewUserName is not null && request.NewUserName !="")
        VerifyProperty(comunications!.User!, u => u.UserName, "existing username", "user name", request);
        
        if(notificationService.HasNotifications)
