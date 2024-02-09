@@ -5,6 +5,7 @@ public enum LogType
 {
     Process,
     Information,
+    Atention,
     Error
 }
 

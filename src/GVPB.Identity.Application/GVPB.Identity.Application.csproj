@@ -10,6 +10,10 @@
     <ProjectReference Include="..\GVPB.Identity.Domain\GVPB.Identity.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\ResetPassword\Handlers\" />
+  </ItemGroup>
+
 
 
 </Project>

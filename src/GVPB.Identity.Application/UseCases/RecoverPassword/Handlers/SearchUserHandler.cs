@@ -1,6 +1,23 @@
-﻿namespace GVPB.Identity.Application.UseCases.RecoverPassword.Handlers;
+﻿using GVPB.Identity.Application.Interfaces.Database;
 
-public class SearchUserHandler
+namespace GVPB.Identity.Application.UseCases.RecoverPassword.Handlers;
+
+public class SearchUserHandler : Handler<RecoverPasswordRequest, RecoverPasswordComunications>
 {
-
+    private readonly IUserRepository userRepository;
+    protected override void ProcessRequest
+        (RecoverPasswordRequest request, 
+        RecoverPasswordComunications? comunications = null)
+    {
+        var user = userRepository.GetByFilter(e => e.Email == request.Email).FirstOrDefault();
+        if (user == null)
+        {
+            comunications!.outputPort.NotFound(request.localizer.GetKey("RecoverPasswordUserNotFound") 
+                + $"{request.Email}");
+            Break();
+            return;
+        }
+        comunications!.user = user;
+        SetObjectsLog(user);
+    }
 }

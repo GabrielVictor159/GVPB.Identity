@@ -1,6 +1,8 @@
-﻿namespace GVPB.Identity.Application.UseCases.RecoverPassword;
+﻿using GVPB.Identity.Application.UseCases.UpdateUser;
 
-public interface IRecoverPasswordUseCase
+namespace GVPB.Identity.Application.UseCases.RecoverPassword;
+
+public interface IRecoverPasswordUseCase : IUseCase<RecoverPasswordRequest>
 {
 
 }
