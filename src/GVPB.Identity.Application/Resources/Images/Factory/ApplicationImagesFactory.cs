@@ -15,6 +15,10 @@ public static class ApplicationImagesFactory
 
                     return getImages(culture, "Confirm_User.png");
                 }
+            case ImagesApplication.RECOVERPASSWORD:
+                {
+                    return getImages(culture, "Recover_Password.png");
+                }
             default:
                 return null;
 

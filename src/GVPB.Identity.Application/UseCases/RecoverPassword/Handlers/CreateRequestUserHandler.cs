@@ -19,7 +19,8 @@ public class CreateRequestUserHandler : Handler<RecoverPasswordRequest, RecoverP
         {
             Id = Guid.NewGuid(),
             Body = JsonConvert.SerializeObject(comunications!.user),
-            CreationDate = DateTime.Now
+            CreationDate = DateTime.Now,
+            RequestUserType = Domain.Enum.RequestUserType.RecoverPassword
         };
         requestUserRepository.Add(requestUser);
         SetObjectsLog(requestUser);

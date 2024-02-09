@@ -1,5 +1,6 @@
 ﻿
 using Bogus;
+using GVPB.Identity.Domain.Enum;
 using GVPB.Identity.Domain.Models;
 using GVPB.Identity.Infraestructure.Tests.Builders;
 using Newtonsoft.Json;
@@ -11,6 +12,7 @@ public class RequestUserBuilder
     private Guid Id { get; set; }
     private string Body { get; set; } = "";
     private DateTime CreationDate { get; set; }
+    private RequestUserType RequestUserType { get; set; } = RequestUserType.Register;
 
     public static RequestUserBuilder New()
     {
@@ -24,7 +26,7 @@ public class RequestUserBuilder
     }
     public RequestUser Build()
     {
-        return new RequestUser() { Id = Id, Body = Body, CreationDate = CreationDate };
+        return new RequestUser() { Id = Id, Body = Body, CreationDate = CreationDate, RequestUserType = RequestUserType };
     }
 
     public RequestUserBuilder WithId(Guid value)
@@ -42,6 +44,12 @@ public class RequestUserBuilder
     public RequestUserBuilder WithCreationDate(DateTime value)
     {
         this.CreationDate = value;
+        return this;
+    }
+
+    public RequestUserBuilder WithRequestUserType(RequestUserType requestUserType)
+    {
+        this.RequestUserType = requestUserType;
         return this;
     }
 

@@ -43,7 +43,7 @@ public class RequestUserUseCase : IRequestUserUseCase
         {
             RequestUserComunications.AddLog(
             LogType.Error,
-                    $"Occurred an error to Login UseCase" +
+                    $"Occurred an error to Request User UseCase" +
                     $"Error: {e.Message ?? e.InnerException?.Message}, stacktrace: {e.StackTrace}");
             outputPort.Error(e.Message!);
         }

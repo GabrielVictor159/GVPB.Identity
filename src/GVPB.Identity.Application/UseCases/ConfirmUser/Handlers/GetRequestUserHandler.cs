@@ -17,7 +17,7 @@ public class GetRequestUserHandler : Handler<ConfirmUserRequest, ConfirmUserComu
 
     protected override void ProcessRequest(ConfirmUserRequest request, ConfirmUserComunications? comunications)
     {
-        var requestUser = requestUserRepository.GetOne(request.Id);
+        var requestUser = requestUserRepository.GetByFilter(e => e.Id==request.Id && e.RequestUserType == Domain.Enum.RequestUserType.Register).FirstOrDefault();
         if(requestUser == null)
         {
             notificationService.AddNotification("Object Not found",$"{request.localizer.GetKey("CONFIRMUSER_NOTFOUND")} Id = {request.Id}");

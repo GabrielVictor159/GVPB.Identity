@@ -33,7 +33,7 @@ public class ListUserUseCase : IListUserUseCase
         {
             ListUserComunications.AddLog(
             LogType.Error,
-                    $"Occurred an error to Login UseCase" +
+                    $"Occurred an error to List User UseCase" +
                     $"Error: {e.Message ?? e.InnerException?.Message}, stacktrace: {e.StackTrace}");
             outputPort.Error(e.Message!);
         }

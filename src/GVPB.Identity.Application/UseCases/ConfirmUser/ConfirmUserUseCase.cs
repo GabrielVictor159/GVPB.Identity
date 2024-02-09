@@ -39,7 +39,7 @@ public class ConfirmUserUseCase : IConfirmUserUseCase
         {
             RequestUserComunications.AddLog(
             LogType.Error,
-                    $"Occurred an error to Login UseCase" +
+                    $"Occurred an error to Confirm User UseCase" +
                     $"Error: {e.Message ?? e.InnerException?.Message}, stacktrace: {e.StackTrace}");
             outputPort.Error(e.Message!);
         }

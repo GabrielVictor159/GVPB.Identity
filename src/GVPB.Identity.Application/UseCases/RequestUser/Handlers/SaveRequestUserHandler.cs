@@ -20,7 +20,8 @@ public class SaveRequestUserHandler : Handler<RequestUserRequest, RequestUserCom
         {
             Id = Guid.NewGuid(),
             Body = JsonConvert.SerializeObject(request.NewUser),
-            CreationDate = DateTime.Now
+            CreationDate = DateTime.Now,
+            RequestUserType = Domain.Enum.RequestUserType.Register
         };
         requestUserRepository.Add(requestUser);
         comunications!.requestUser = requestUser;

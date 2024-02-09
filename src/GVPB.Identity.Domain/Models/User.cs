@@ -18,7 +18,7 @@ public class User : Entity<User, UserValidator>
         { 
             return _password; 
         } 
-        init 
+        set 
         { 
             _password = value.md5Hash(); 
             PasswordLength = value.Length;

@@ -36,7 +36,7 @@ public class RemoveUserUseCase : IRemoveUserUseCase
         {
             RemoveUserComunications.AddLog(
             LogType.Error,
-                    $"Occurred an error to Login UseCase" +
+                    $"Occurred an error to Remove User UseCase" +
                     $"Error: {e.Message ?? e.InnerException?.Message}, stacktrace: {e.StackTrace}");
             outputPort.Error(e.Message!);
         }
