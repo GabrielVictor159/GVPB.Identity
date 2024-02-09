@@ -2,6 +2,7 @@
 
 public enum ImagesApplication
 {
-    CONFIRM_USER
+    CONFIRM_USER,
+    RECOVERPASSWORD
 }
 
