@@ -64,6 +64,12 @@
   <data name="LOGINNOTFOUND" xml:space="preserve">
     <value>Unable to find any user with the provided data.</value>
   </data>
+  <data name="RecoverPasswordUserNotFound" xml:space="preserve">
+    <value>Unable to find user</value>
+  </data>
+  <data name="RecoverPassword_EmailSubject" xml:space="preserve">
+    <value>Recover Password</value>
+  </data>
   <data name="REQUESTUSER_EMAILSUBJECT" xml:space="preserve">
     <value>User Confirmation</value>
   </data>

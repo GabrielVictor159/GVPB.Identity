@@ -22,7 +22,7 @@ public class SearchRequestUser : Handler<ResetPasswordRequest, ResetPasswordComu
 
         if (requestUser == null)
         {
-            comunications!.outputPort.NotFound($"{request.Localizer.GetKey("RESETPASSWORD_NOTFOUND")} Id = {request.IdRequest}");
+            comunications!.outputPort.NotFound($"{request.Localizer.GetKey("CONFIRMUSER_NOTFOUND")} Id = {request.IdRequest}");
             Break();
             return;
         }

@@ -23,6 +23,7 @@ public class CreateRequestUserHandler : Handler<RecoverPasswordRequest, RecoverP
             RequestUserType = Domain.Enum.RequestUserType.RecoverPassword
         };
         requestUserRepository.Add(requestUser);
+        comunications.requestUser = requestUser;
         SetObjectsLog(requestUser);
     }
 }

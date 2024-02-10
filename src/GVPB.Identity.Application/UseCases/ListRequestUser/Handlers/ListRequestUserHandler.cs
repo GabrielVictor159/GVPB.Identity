@@ -7,6 +7,12 @@ namespace GVPB.Identity.Application.UseCases.ListRequestUser.Handlers;
 public class ListRequestUserHandler : Handler<ListRequestUserRequest, ListRequestUserComunications>
 {
     private readonly IRequestUserRepository RequestUserRepository;
+
+    public ListRequestUserHandler(IRequestUserRepository requestUserRepository)
+    {
+        RequestUserRepository = requestUserRepository;
+    }
+
     protected override void ProcessRequest(ListRequestUserRequest request, ListRequestUserComunications? comunications = null)
     {
         comunications!.RequestUsers = RequestUserRepository.GetByFilter(request.Expression);

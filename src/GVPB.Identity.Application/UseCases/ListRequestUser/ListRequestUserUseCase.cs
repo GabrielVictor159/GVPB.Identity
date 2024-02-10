@@ -28,7 +28,7 @@ public class ListRequestUserUseCase : IListRequestUserUseCase
         var ListRequestUserComunications = new ListRequestUserComunications() { };
         try
         {
-            listRequestUserHandler.Execute(request);
+            listRequestUserHandler.Execute(request, ListRequestUserComunications);
             outputPort.Standard(new() { RequestUsers = ListRequestUserComunications.RequestUsers});
         }
         catch (Exception e)
