@@ -120,4 +120,7 @@
   <data name="CONFIRMUSER_NOTFOUND" xml:space="preserve">
     <value>No se puede encontrar la solicitud especificada</value>
   </data>
+  <data name="CONFIRM_USER_EMAIL_EXISTIS" xml:space="preserve">
+    <value>Ya existe un usuario con este correo electrónico</value>
+  </data>
 </root>

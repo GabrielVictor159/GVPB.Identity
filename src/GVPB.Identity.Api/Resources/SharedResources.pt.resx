@@ -61,6 +61,9 @@
   <data name="CONFIRMUSER_NOTFOUND" xml:space="preserve">
     <value>Não foi possivel encontrar o request especificado</value>
   </data>
+  <data name="CONFIRM_USER_EMAIL_EXISTIS" xml:space="preserve">
+    <value>Ja existe um usuario com esse email</value>
+  </data>
   <data name="LOGINNOTFOUND" xml:space="preserve">
     <value>Não foi possível encontrar nenhum usuário com os dados fornecidos.</value>
   </data>
@@ -79,5 +82,11 @@
   <data name="UPDATEUSER_NOTFOUND" xml:space="preserve">
     <value>Usuário não encontrado.</value>
     <comment />
+  </data>
+  <data name="SUCESS_CONFIRMUSER" xml:space="preserve">
+    <value>Usuario Criado com Sucesso</value>
+  </data>
+  <data name="SUCESS_REQUESTUSER" xml:space="preserve">
+    <value>Pedido de criação de usuario criado, por favor verifique o seu email e confirme a criação do usuario.</value>
   </data>
 </root>

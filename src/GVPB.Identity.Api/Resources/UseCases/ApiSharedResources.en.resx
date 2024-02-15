@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CONFIRMUSER_NOTFOUND" xml:space="preserve">
-    <value>Unable to find the specified request</value>
+  <data name="SUCESS_CONFIRMUSER" xml:space="preserve">
+    <value>User Created Successfully</value>
   </data>
-  <data name="CONFIRM_USER_EMAIL_EXISTIS" xml:space="preserve">
-    <value>There is already a user with this email</value>
+  <data name="SUCESS_REQUESTUSER" xml:space="preserve">
+    <value>Solicitud de creación de usuario creada, por favor revise su correo electrónico y confirme la creación de usuario.</value>
   </data>
 </root>

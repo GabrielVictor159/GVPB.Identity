@@ -57,6 +57,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Env", "Env", "{057AC914-E7B0-4A88-B888-BA30D322B52F}"
 	ProjectSection(SolutionItems) = preProject
 		Env\Commons.env = Env\Commons.env
+		Env\Databases.env = Env\Databases.env
 	EndProjectSection
 EndProject
 Global

@@ -7,7 +7,8 @@ public class ApiModule: Module
 {
     protected override void Load(ContainerBuilder builder)
     {
-  
+        builder.RegisterAssemblyTypes(typeof(ApiException).Assembly)
+                 .AsImplementedInterfaces().AsSelf().InstancePerLifetimeScope();
     }
 
 }

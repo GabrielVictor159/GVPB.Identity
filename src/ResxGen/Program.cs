@@ -11,7 +11,8 @@ var supportedCultures = new[]
 List<string> inputDirectories = new List<string>
         {
             "../GVPB.Identity.Domain/Resources",
-            "../GVPB.Identity.Application/Resources/UseCases"
+            "../GVPB.Identity.Application/Resources/UseCases",
+            "../GVPB.Identity.Api/Resources/UseCases"
         };
 new ResxMerger(supportedCultures,mergedResourcesPath, inputDirectories).Merge("SharedResources");
 Console.WriteLine("Finished!");

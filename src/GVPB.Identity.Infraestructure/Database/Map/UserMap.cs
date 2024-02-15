@@ -11,6 +11,7 @@ public class UserMap : IEntityTypeConfiguration<User>
     {
         builder.ToTable("Users", "UserManagement");
         builder.HasKey(x => x.Id);
+        builder.HasIndex(x => x.Email).IsUnique();
     }
 }
 
