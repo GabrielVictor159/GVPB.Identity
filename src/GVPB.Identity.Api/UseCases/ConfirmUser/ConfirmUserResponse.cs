@@ -12,6 +12,6 @@ public class ConfirmUserResponse
     {
         this.Message = $"{languageService.GetKey("SUCESS_CONFIRMUSER")}";
         this.Status = "SUCESS";
-        this.IdUser = bundaries.User.Id;
+        this.IdUser = bundaries.User !=null? bundaries.User.Id : Guid.Empty;
     }
 }
