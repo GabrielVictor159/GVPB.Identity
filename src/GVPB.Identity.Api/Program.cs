@@ -82,7 +82,7 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-
+builder.WebHost.UseUrls("http://*:5031");
 
 var app = builder.Build();
 
