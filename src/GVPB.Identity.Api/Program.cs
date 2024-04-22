@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using Autofac;
@@ -13,7 +14,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
-var supportedCultures = new[]
+var supportedCultures = new[] 
 {
     new CultureInfo("en"),
     new CultureInfo("pt"),
@@ -22,7 +23,6 @@ var supportedCultures = new[]
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.AddAutofacRegistration());
-
 builder.Services.AddSingleton<LanguageManager<SharedResources>>();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddControllers();
@@ -31,7 +31,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
 
-    // Adicionar esquema de autenticação JWT ao Swagger UI
+    // Adicionar esquema de autenticaï¿½ï¿½o JWT ao Swagger UI
     var securityScheme = new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme.",
@@ -81,6 +81,9 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false,
     };
 });
+
+
+
 var app = builder.Build();
 
 var requestLocalizationOptions = new RequestLocalizationOptions()

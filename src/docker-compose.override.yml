@@ -8,6 +8,7 @@ services:
     ports:
       - "80"
       - "443"
+      - "5031"
     env_file:
       - env/Commons.env
       - env/Databases.env
