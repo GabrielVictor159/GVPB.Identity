@@ -7,11 +7,18 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
       - "80"
-      - "443"
-      - "5031"
+      - "5031:443"
     env_file:
       - env/Commons.env
       - env/Databases.env
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
     networks:
       - gvpb-identity
     volumes:
@@ -48,10 +55,50 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
 
+  influxdb:
+    image: influxdb:1.8
+    restart: always
+    ports:
+      - "8086:8086"
+    environment:
+      INFLUXDB_DB: k6
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: admin
+      INFLUXDB_USER: k6
+      INFLUXDB_USER_PASSWORD: k6
+    networks:
+      - gvpb-identity
+    volumes:
+      - influxdb-data:/var/lib/influxdb
+ 
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    networks:
+      - gvpb-identity
+    depends_on:
+      - gvpb.identity.api
+
+
+  grafana:
+    image: grafana/grafana:latest
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - gvpb-identity
+    depends_on:
+      - influxdb
+
 networks:
   gvpb-identity:
 
 volumes:
   postgres-data:
+  influxdb-data:
+  prometheus-data:
 
 

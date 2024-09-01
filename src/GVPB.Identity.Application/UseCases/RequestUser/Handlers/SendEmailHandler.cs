@@ -15,11 +15,12 @@ public class SendEmailHandler : Handler<RequestUserRequest, RequestUserComunicat
 
     protected override void ProcessRequest(RequestUserRequest request, RequestUserComunications? comunications)
     {
-        emailService.SendEmail
-            (request.NewUser.Email, 
-            request.Localizer.GetKey("REQUESTUSER_EMAILSUBJECT").Value,
-            ApplicationImagesFactory.GetBase64Images(ImagesApplication.CONFIRM_USER,request.Culture)!,
-            $"{Environment.GetEnvironmentVariable("URL_HOST")}/UserConfirmation/{comunications!.requestUser!.Id}");
+        //emailService.SendEmail
+        //    (request.NewUser.Email, 
+        //    request.Localizer.GetKey("REQUESTUSER_EMAILSUBJECT").Value,
+        //    ApplicationImagesFactory.GetBase64Images(ImagesApplication.CONFIRM_USER,request.Culture)!,
+        //    $"{Environment.GetEnvironmentVariable("URL_HOST")}/UserConfirmation/{comunications!.requestUser!.Id}");
+
 
     }
 }

@@ -1,4 +1,6 @@
-﻿using GVPB.Identity.Api.Helpers;
+﻿using App.Metrics;
+using App.Metrics.Timer;
+using GVPB.Identity.Api.Helpers;
 using GVPB.Identity.Api.UseCases.ConfirmUser;
 using GVPB.Identity.Application.UseCases.ConfirmUser;
 using GVPB.Identity.Application.UseCases.RequestUser;
@@ -17,15 +19,18 @@ public class RequestUserController : ControllerBase
     private readonly RequestUserPresenter presenter;
     private readonly IRequestUserUseCase RequestUserUseCase;
     private readonly LanguageManager<SharedResources> languageService;
+    private readonly IMetrics metrics;
 
     public RequestUserController
         (RequestUserPresenter presenter, 
         IRequestUserUseCase requestUserUseCase, 
-        LanguageManager<SharedResources> languageService)
+        LanguageManager<SharedResources> languageService,
+        IMetrics metrics)
     {
         this.presenter = presenter;
         RequestUserUseCase = requestUserUseCase;
         this.languageService = languageService;
+        this.metrics = metrics;
     }
 
     [HttpPost]
@@ -36,20 +41,33 @@ public class RequestUserController : ControllerBase
     [Route("RequestUser")]
     public IActionResult RequestUser([FromBody] RequestUser.RequestUserRequest RequestUserRequest)
     {
-        var request = new Application.UseCases.RequestUser.RequestUserRequest()
+        var timer = this.metrics.Provider.Timer.Instance(new TimerOptions
         {
-            NewUser = new Domain.Models.User()
+            Name = "RequestUser Timer",
+            MeasurementUnit = Unit.Requests,
+            DurationUnit = TimeUnit.Milliseconds,
+            RateUnit = TimeUnit.Minutes
+        });
+
+        using (timer.NewContext())
+        {
+            var request = new Application.UseCases.RequestUser.RequestUserRequest()
             {
-                Id = Guid.NewGuid(),
-                UserName = RequestUserRequest.UserName,
-                Password = RequestUserRequest.Password,
-                Email = RequestUserRequest.Email,
-                Rule = Rules.USER
-            },
-            Localizer = languageService,
-            Culture = HttpContext.GetCulture().ToString()
-        };
-        RequestUserUseCase.Execute(request);
+                NewUser = new Domain.Models.User()
+                {
+                    Id = Guid.NewGuid(),
+                    UserName = RequestUserRequest.UserName,
+                    Password = RequestUserRequest.Password,
+                    Email = RequestUserRequest.Email,
+                    Rule = Rules.USER
+                },
+                Localizer = languageService,
+                Culture = HttpContext.GetCulture().ToString()
+            };
+
+            RequestUserUseCase.Execute(request);
+        }
+
         return presenter.ViewModel;
     }
 

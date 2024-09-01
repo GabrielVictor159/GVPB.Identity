@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text;
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation.Resources;
 using GVPB.Identity.Api;
@@ -13,25 +14,56 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using App.Metrics.Reporting.InfluxDB;
+using GVPB.Identity.Api.Helpers;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using App.Metrics;
+using App.Metrics.Extensions.Middleware.DependencyInjection.Options;
+using App.Metrics.Extensions.Reporting.InfluxDB;
+using App.Metrics.Extensions.Reporting.InfluxDB.Client;
+using App.Metrics.Reporting.Interfaces;
+using App.Metrics.AspNetCore.Tracking;
+using App.Metrics.Scheduling;
+using Microsoft.Extensions.Configuration;
+using App.Metrics.Formatters.InfluxDB;
+using App.Metrics.Filtering;
+using Microsoft.AspNetCore.Builder;
+using App.Metrics.Formatters.Prometheus;
+using App.Metrics.Formatters;
 
-var supportedCultures = new[] 
+var supportedCultures = new[]
 {
     new CultureInfo("en"),
     new CultureInfo("pt"),
     new CultureInfo("es"),
 };
+
 var builder = WebApplication.CreateBuilder(args);
+
+var metrics = AppMetrics.CreateDefaultBuilder()
+    .OutputMetrics.AsPrometheusPlainText()
+    .Build();
+
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.AddAutofacRegistration());
+
 builder.Services.AddSingleton<LanguageManager<SharedResources>>();
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddMetrics(metrics);
+builder.Services.AddMetricsTrackingMiddleware();
+builder.Services.AddMetricsEndpoints(options =>
+{
+    options.MetricsEndpointOutputFormatter = metrics.OutputMetricsFormatters.GetType<MetricsPrometheusTextOutputFormatter>();
+});
+builder.Services.AddHostedService<SystemMetricsService>();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
 
-    // Adicionar esquema de autentica��o JWT ao Swagger UI
     var securityScheme = new OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme.",
@@ -56,9 +88,12 @@ builder.Services.AddSwaggerGen(c =>
     };
     c.AddSecurityRequirement(securityRequirement);
 });
+
 builder.Services.AddFilters();
+
 Environment.SetEnvironmentVariable("SECRET", Guid.NewGuid().ToString());
 var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("SECRET")!);
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Cliente", policy => policy.RequireRole(Rules.USER.ToString()));
@@ -82,8 +117,6 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-builder.WebHost.UseUrls("http://*:5031");
-
 var app = builder.Build();
 
 var requestLocalizationOptions = new RequestLocalizationOptions()
@@ -92,8 +125,11 @@ var requestLocalizationOptions = new RequestLocalizationOptions()
     SupportedCultures = supportedCultures,
     SupportedUICultures = supportedCultures
 };
+app.UseMetricsAllMiddleware();
+app.UseMetricsAllEndpoints();
 
 app.UseRequestLocalization(requestLocalizationOptions);
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -102,9 +138,11 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
     });
 }
+
 app.UseCors();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 app.Run();
